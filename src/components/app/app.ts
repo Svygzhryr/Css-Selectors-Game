@@ -1,11 +1,10 @@
 class App {
-    constructor(message) {
-        this.message = message;
+    constructor() {
+        
     }
 
     start() {
-        this.message = 'hi';
-        console.log(hi);
+        console.log('hi');
         let a = document.createElement('div');
         a.className = 'a';
         document.body.appendChild(a);
