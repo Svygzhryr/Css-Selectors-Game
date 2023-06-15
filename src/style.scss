@@ -17,7 +17,7 @@ aside {
   right: 0;
   top: 0;
   height: 100vh;
-  width: 15vw;
+  width: 20vw;
   text-align: center;
   border-left: 2px solid $highlight;
 }
@@ -51,8 +51,8 @@ header, main {
 }
 
 .app {
-  margin: 0 100px;
-  margin-right: calc(15vw + 100px);
+  margin: 0 10vw;
+  margin-right: calc(10vw + 20vw);
 }
 
 .headline {
@@ -74,7 +74,7 @@ header, main {
   
   .css-editor__field {
     display: flex;
-    background-color: $highlight;
+    background-color: $alt;
 
     .css-editor__selector {
       width: 100%;
@@ -91,11 +91,10 @@ header, main {
       transition: all .2s ease-in;
 
       &::placeholder {
-        color: $main;
+        color: $text;
       }
 
       &:focus {
-
         outline: none;
         animation: 6s ease-in-out highlight infinite;
         color: $bg;
@@ -108,11 +107,13 @@ header, main {
   width: 50%;
 
   .markup-viewer__field {
-
+    display: flex;
   }
 
   .markup-viewer__html {
-
+    padding: 9px 10px;
+    line-height: 1.5;
+    font-size: 15px;
   }
 }
 
@@ -153,11 +154,24 @@ header, main {
 
   &>li {
     margin: 5px 0;
+    transition: .2s all ease-in-out;
+
+    &:hover {
+      
+      color: $active;
+      cursor: pointer;
+
+    }
   }
 }
 
 .levels__item_passed {
   text-decoration: line-through;
+
+  &:hover {
+    color: $text !important;
+    cursor: unset !important;
+  }
 }
 
 .reset {
@@ -168,7 +182,7 @@ header, main {
   border: 2px solid $text;
   font-size: 20px;
   transition: all .3s ease-in-out;
-  box-shadow: 0px 20px 10px 0px transparent;
+  box-shadow: 0px 20px 5px 0px transparent;
 
 
   &:hover {
@@ -178,6 +192,11 @@ header, main {
     border: $active 2px solid;
     box-shadow: 0px 5px 5px 0px $active;
   }
+}
+
+.empty {
+  width: 50px;
+  height: auto;
 }
 
 @keyframes highlight {
