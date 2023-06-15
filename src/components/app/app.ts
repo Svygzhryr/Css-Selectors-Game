@@ -5,9 +5,6 @@ class App {
 
     start() {
         console.log('hi');
-        let a = document.createElement('div');
-        a.className = 'a';
-        document.body.appendChild(a);
     }
 }
 
