@@ -1,11 +1,7 @@
-class App {
-    constructor() {
-        
-    }
-
+import Levels from '../levels/levels';
+export default class App {
     start() {
-        console.log('hi');
+        const levels = new Levels();
+        levels.initialize();
     }
 }
-
-export default App;
