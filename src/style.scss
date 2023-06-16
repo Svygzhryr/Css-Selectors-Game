@@ -60,13 +60,15 @@ header, main {
 }
 
 .items {
-  padding: 10px;
+  height: 100%;
 }
 
 .table {
   background-color: $main;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .css-editor {
@@ -198,6 +200,77 @@ header, main {
   width: 50px;
   height: auto;
 }
+
+.table {
+}
+
+.table__item {
+  margin: 0 20px;
+  
+}
+
+.jar {
+  height: 70px;
+  width: 60px;
+  background-color: rgba(188, 211, 229, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 5px 0;
+  z-index: 2;
+  border-top: 10px solid $active;
+  border-radius: 0 0 5px 5px;
+  transform-style: preserve-3d;
+  transform: translateZ(10px);
+}
+
+.circle {
+  transform: translateZ(-10px);
+  position: relative;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: $active;
+  box-shadow: inset -5px -5px 10px rgba(150, 32, 32, 0.5);
+  z-index: 0;
+  margin-top: 40px;
+  
+}
+
+.square {
+  transform: translateZ(-10px);
+  height: 50px;
+  width: 50px;
+  background-color: $active;
+  box-shadow: inset -5px 5px 1px rgba(114, 67, 28, 0.9);
+  margin-top: 40px;
+}
+
+#purple {
+  background-color: $alt-active;
+  box-shadow: inset -5px -5px 10px rgba(9, 8, 59, 0.5);
+}
+
+#purple.square {
+  box-shadow: inset -5px 5px 1px rgba(17, 16, 75, 0.9);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @keyframes highlight {
   0% {
