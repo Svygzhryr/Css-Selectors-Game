@@ -100,6 +100,10 @@ header, main {
         outline: none;
         animation: 6s ease-in-out highlight infinite;
         color: $bg;
+
+        &::placeholder {
+          color: $bg;
+        }
       }
     }
   }
@@ -215,7 +219,16 @@ header, main {
 
 .table__item {
   margin: 0 20px;
+  outline: 4px solid transparent;
+  transition: all .2s ease-in-out;
   
+  &:hover {
+    outline: 4px solid $alt-text;
+  }
+}
+
+.target {
+  animation: infinite 4s target;
 }
 
 .jar {
@@ -293,6 +306,24 @@ header, main {
 
   100% {
     background-color: $active;
+
+  }
+}
+
+@keyframes target {
+  0% {
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+
 
   }
 }

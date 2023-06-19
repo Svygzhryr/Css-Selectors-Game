@@ -1,4 +1,4 @@
-import Levels from '../levels/levels';
+import Levels from '../levels/setUpLevels';
 export default class App {
     start() {
         const levels = new Levels();
