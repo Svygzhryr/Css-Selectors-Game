@@ -312,18 +312,33 @@ header, main {
 
 @keyframes target {
   0% {
+    transform: rotate(10deg);
+    box-shadow: 0px 0px 9px 5px rgba(176, 134, 192, 0);
   }
 
   25% {
+    box-shadow: 0px 0px 4px 5px rgba(176, 134, 192, 1);
+
+
+  }
+
+  50% {
     transform: rotate(-10deg);
+    box-shadow: 0px 0px 9px 5px rgba(176, 134, 192, 0);
+
+
+
   }
 
   75% {
-    transform: rotate(10deg);
+    box-shadow: 0px 0px 4px 5px rgba(176, 134, 192, 1);
+
+
   }
 
   100% {
-
+    transform: rotate(10deg);
+    box-shadow: 0px 0px 9px 5px rgba(176, 134, 192, 0);
 
   }
 }
