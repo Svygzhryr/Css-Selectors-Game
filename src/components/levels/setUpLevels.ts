@@ -100,11 +100,20 @@ export default class Levels {
             console.log('reset all');
         }
 
+        function handleSelectorApply(e: Event) {
+            const input = e.target as HTMLTextAreaElement;
+            const selector = input?.value;
+            document.querySelectorAll(selector).forEach((l) => {
+                l.classList.add('correct');
+            });
+        }
+
         document.querySelectorAll('.levels__item').forEach((e) => {
             e.addEventListener('click', handleLevelSelect);
         });
 
         document.querySelector('.reset')?.addEventListener('click', handleLevelReset);
+        document.querySelector('.css-editor__selector')?.addEventListener('change', handleSelectorApply);
     }
 
     levelOne() {
@@ -112,6 +121,7 @@ export default class Levels {
         this.table?.appendChild(this.square.cloneNode(true));
         document.querySelector('.square')?.classList.add('target');
         this.table?.appendChild(this.jar.cloneNode(true));
+        //
         const htmlCircle = document.createElement('div');
         this.HTMLField?.appendChild(htmlCircle);
         htmlCircle.appendChild(document.createTextNode('<circle />'));
@@ -124,7 +134,11 @@ export default class Levels {
     }
 
     levelTwo() {
-        console.log('execute this level');
+        this.table?.appendChild(this.circle.cloneNode(true));
+        this.table?.appendChild(this.jar.cloneNode(true));
+        document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
+        document.querySelector('circle:last-child')?.classList.remove('table__item');
+        document.querySelector('circle:last-child')?.classList.add('target');
     }
 
     levelThree() {

@@ -228,13 +228,13 @@ header, main {
 }
 
 .target {
-  animation: infinite 4s target;
+  animation: infinite 8s target;
 }
 
 .jar {
   height: 70px;
   width: 60px;
-  background-color: rgba(188, 211, 229, 0.4);
+  background-color: rgba(188, 211, 229, 0.2);
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -256,6 +256,15 @@ header, main {
   box-shadow: inset -5px -5px 10px rgba(150, 32, 32, 0.5);
   z-index: 0;
   margin-top: 40px;
+
+  transition: all .2s ease-in-out;
+  outline: 4px solid transparent;
+
+
+
+  &:hover {
+    outline: 4px solid $alt-text;
+  }
   
 }
 
@@ -266,6 +275,14 @@ header, main {
   background-color: $active;
   box-shadow: inset -5px 5px 1px rgba(114, 67, 28, 0.9);
   margin-top: 40px;
+
+  transition: all .2s ease-in-out;
+  outline: 4px solid transparent;
+
+
+  &:hover {
+    outline: 4px solid $alt-text;
+  }
 }
 
 #purple {
@@ -276,7 +293,12 @@ header, main {
 #purple.square {
   box-shadow: inset -5px 5px 1px rgba(17, 16, 75, 0.9);
 
+}
 
+.correct {
+  opacity: 0;
+  outline: none;
+  transition: all 1s ease-in-out
 }
 
 
@@ -312,33 +334,31 @@ header, main {
 
 @keyframes target {
   0% {
-    transform: rotate(10deg);
-    box-shadow: 0px 0px 9px 5px rgba(176, 134, 192, 0);
+    // transform: rotate(10deg);
   }
 
   25% {
-    box-shadow: 0px 0px 4px 5px rgba(176, 134, 192, 1);
+    opacity: 0.3
 
 
   }
 
   50% {
-    transform: rotate(-10deg);
-    box-shadow: 0px 0px 9px 5px rgba(176, 134, 192, 0);
-
+    // transform: rotate(-10deg);
+    opacity: 1;
 
 
   }
 
   75% {
-    box-shadow: 0px 0px 4px 5px rgba(176, 134, 192, 1);
+    opacity: 0.3
+
 
 
   }
 
   100% {
-    transform: rotate(10deg);
-    box-shadow: 0px 0px 9px 5px rgba(176, 134, 192, 0);
+    // transform: rotate(10deg);
 
   }
 }
