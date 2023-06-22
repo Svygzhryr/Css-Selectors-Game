@@ -228,7 +228,7 @@ header, main {
 }
 
 .target {
-  animation: infinite 8s target;
+  animation: infinite 5s target;
 }
 
 .jar {
@@ -295,7 +295,7 @@ header, main {
 
 }
 
-.correct {
+.selection {
   opacity: 0;
   outline: none;
   transition: all 1s ease-in-out
@@ -335,23 +335,25 @@ header, main {
 @keyframes target {
   0% {
     // transform: rotate(10deg);
+    background-color: $active;
+
   }
 
   25% {
-    opacity: 0.3
-
+    background-color: rgba(248, 196, 85, 0.3)
 
   }
 
   50% {
     // transform: rotate(-10deg);
-    opacity: 1;
+    background-color: $active;
 
 
   }
 
   75% {
-    opacity: 0.3
+    background-color: rgba(248, 196, 85, 0.3)
+
 
 
 
@@ -359,6 +361,7 @@ header, main {
 
   100% {
     // transform: rotate(10deg);
+    background-color: $active;
 
   }
 }

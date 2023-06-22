@@ -5,6 +5,7 @@ export default class Levels {
     circle: Element;
     square: Element;
     jar: Element;
+    // currentLevel: number;
     constructor() {
         this.title = document.querySelector('.headline');
         this.table = document.querySelector('.table');
@@ -18,6 +19,8 @@ export default class Levels {
 
         this.jar = document.createElement('jar');
         this.jar.className = 'table__item jar';
+
+        // this.currentLevel;
     }
 
     initialize() {
@@ -100,11 +103,28 @@ export default class Levels {
             console.log('reset all');
         }
 
+        function finishLevel(l: Element) {
+            l.classList.add('selection');
+            clearTable();
+            clearHTMLField();
+            clearLevelHightlight();
+            const currentLevelLabel = document.querySelector(`[data-level='${localStorage.getItem('currentLevel')}']`);
+            currentLevelLabel?.classList.add('levels__item_passed');
+            currentLevelLabel?.removeEventListener('click', handleLevelSelect);
+            const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
+            console.log(nextLevel);
+            setLevel(nextLevel);
+        }
+
         function handleSelectorApply(e: Event) {
             const input = e.target as HTMLTextAreaElement;
             const selector = input?.value;
             document.querySelectorAll(selector).forEach((l) => {
-                l.classList.add('correct');
+                if (l.classList.contains('target')) {
+                    finishLevel(l);
+                } else {
+                    // error sign
+                }
             });
         }
 
@@ -134,6 +154,7 @@ export default class Levels {
     }
 
     levelTwo() {
+        // this.currentLevel = 1;
         this.table?.appendChild(this.circle.cloneNode(true));
         this.table?.appendChild(this.jar.cloneNode(true));
         document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
