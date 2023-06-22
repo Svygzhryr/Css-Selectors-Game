@@ -231,6 +231,11 @@ header, main {
   animation: infinite 5s target;
 }
 
+#purple.target {
+  animation: infinite 5s atarget;
+
+}
+
 .jar {
   height: 70px;
   width: 60px;
@@ -340,7 +345,7 @@ header, main {
   }
 
   25% {
-    background-color: rgba(248, 196, 85, 0.3)
+    background-color: rgba(248, 196, 85, 0.3);
 
   }
 
@@ -352,7 +357,7 @@ header, main {
   }
 
   75% {
-    background-color: rgba(248, 196, 85, 0.3)
+    background-color: rgba(248, 196, 85, 0.3);
 
 
 
@@ -362,6 +367,40 @@ header, main {
   100% {
     // transform: rotate(10deg);
     background-color: $active;
+
+  }
+}
+
+@keyframes atarget {
+  0% {
+    // transform: rotate(10deg);
+    background-color: $alt-active;
+
+  }
+
+  25% {
+    background-color: rgba(131, 96, 255, 0.3);
+
+  }
+
+  50% {
+    // transform: rotate(-10deg);
+    background-color: $alt-active;
+
+
+  }
+
+  75% {
+    background-color: rgba(131, 96, 255, 0.3);
+
+
+
+
+  }
+
+  100% {
+    // transform: rotate(10deg);
+    background-color: $alt-active;
 
   }
 }

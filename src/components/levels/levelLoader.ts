@@ -29,14 +29,33 @@ export default class Levels {
                 this.table.innerHTML = '';
             }
         };
+
         const clearLevelHightlight = () => {
             document.querySelectorAll('.levels__item').forEach((l) => {
                 l.classList.remove('levels__item_active');
             });
         };
+
         const clearHTMLField = () => {
             this.HTMLField.innerHTML = '';
         };
+
+        const updateInfo = (e?: Event) => {
+            if (e?.target instanceof Element) {
+                const element = e.target as HTMLElement | null;
+                if (this.title && element) {
+                    if (!element.classList.contains('levels__item_active')) {
+                        clearLevelHightlight();
+                        element.classList.add('levels__item_active');
+                        localStorage.setItem('currentLevel', `${element.dataset.level}`);
+                    }
+                    this.title.innerHTML = element.innerHTML;
+                    localStorage.setItem('title', `${element.innerHTML}`);
+                }
+                setLevel(element);
+            }
+        };
+
         const setLevel = (element?: HTMLElement | null) => {
             if (this.title) {
                 const storedTitle = localStorage.getItem('title') as string;
@@ -80,45 +99,44 @@ export default class Levels {
             const hightlightLevel = document.querySelector(`[data-level='${localStorage.getItem('currentLevel')}']`);
             hightlightLevel?.classList.add('levels__item_active');
         };
+
         setLevel();
         const handleLevelSelect = (e: Event) => {
             clearTable();
             clearHTMLField();
-            if (e.target instanceof Element) {
-                const element = e.target as HTMLElement | null;
-                if (this.title && element) {
-                    if (!element.classList.contains('levels__item_active')) {
-                        clearLevelHightlight();
-                        element.classList.add('levels__item_active');
-                        localStorage.setItem('currentLevel', `${element.dataset.level}`);
-                    }
-                    this.title.innerHTML = element.innerHTML;
-                    localStorage.setItem('title', `${element.innerHTML}`);
-                }
-                setLevel(element);
-            }
+            updateInfo(e);
         };
 
-        function handleLevelReset() {
+        const handleLevelReset = () => {
             console.log('reset all');
-        }
+        };
 
-        function finishLevel(l: Element) {
+        async function finishLevel(l: Element) {
+            console.log('finishLevelInProcess');
             l.classList.add('selection');
+            // задержку добавить надо
             clearTable();
             clearHTMLField();
-            clearLevelHightlight();
-            const currentLevelLabel = document.querySelector(`[data-level='${localStorage.getItem('currentLevel')}']`);
+            // сделать чтобы при выполнении уровня он зачёркивался
+            const currentLevelLabel = document.querySelector('.levels__item_active');
             currentLevelLabel?.classList.add('levels__item_passed');
+            currentLevelLabel?.classList.remove('levels__item_active');
+            clearLevelHightlight();
             currentLevelLabel?.removeEventListener('click', handleLevelSelect);
+
             const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
+            nextLevel.classList.add('levels__item_active');
             console.log(nextLevel);
+
+            updateInfo();
+
             setLevel(nextLevel);
         }
 
         function handleSelectorApply(e: Event) {
             const input = e.target as HTMLTextAreaElement;
             const selector = input?.value;
+            // улучшить и исправить проверку
             document.querySelectorAll(selector).forEach((l) => {
                 if (l.classList.contains('target')) {
                     finishLevel(l);
@@ -163,11 +181,20 @@ export default class Levels {
     }
 
     levelThree() {
-        console.log('execute this level');
+        this.table?.appendChild(this.circle.cloneNode(true));
+        this.table?.appendChild(this.circle.cloneNode(true));
+        this.table?.appendChild(this.circle.cloneNode(true));
+        document.querySelector('circle:last-child')?.classList.add('target');
+        document.querySelector('circle:first-child')?.classList.add('target');
     }
 
     levelFour() {
-        console.log('execute this level');
+        this.table?.appendChild(this.square.cloneNode(true));
+        this.table?.appendChild(this.square.cloneNode(true));
+        this.table?.appendChild(this.square.cloneNode(true));
+        document.querySelector('square:nth-child(2)')?.classList.add('target');
+        const psquare = document.querySelector('square:nth-child(2)') as Element;
+        psquare.id = 'purple';
     }
 
     levelFive() {
