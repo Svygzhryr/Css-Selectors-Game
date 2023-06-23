@@ -112,25 +112,22 @@ export default class Levels {
         };
 
         async function finishLevel(l: Element) {
-            console.log('finishLevelInProcess');
             l.classList.add('selection');
             // задержку добавить надо
             clearTable();
             clearHTMLField();
             // сделать чтобы при выполнении уровня он зачёркивался
             const currentLevelLabel = document.querySelector('.levels__item_active');
+            console.log(currentLevelLabel, 'current');
             currentLevelLabel?.classList.add('levels__item_passed');
             currentLevelLabel?.classList.remove('levels__item_active');
-            clearLevelHightlight();
             currentLevelLabel?.removeEventListener('click', handleLevelSelect);
 
             const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
-            nextLevel.classList.add('levels__item_active');
-            console.log(nextLevel);
-
-            updateInfo();
 
             setLevel(nextLevel);
+            clearLevelHightlight();
+            nextLevel.classList.add('levels__item_active');
         }
 
         function handleSelectorApply(e: Event) {

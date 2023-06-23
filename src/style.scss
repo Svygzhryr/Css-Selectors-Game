@@ -173,6 +173,7 @@ header, main {
 
 .levels__item_passed {
   text-decoration: line-through;
+  color: $highlight;
 
   &:hover {
     color: $text !important;
