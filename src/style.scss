@@ -176,8 +176,8 @@ header, main {
   color: $highlight;
 
   &:hover {
-    color: $text !important;
-    cursor: unset !important;
+    color: $highlight !important;
+    cursor: default !important;
   }
 }
 
@@ -216,6 +216,7 @@ header, main {
 }
 
 .table {
+  font-size: 30px;
 }
 
 .table__item {

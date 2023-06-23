@@ -1,3 +1,9 @@
+// план:
+// исправить некорректное поведение игры при завершении последнего уровня, смотреть функцию finishLevel
+// исправить способ распознавания правильных ответов в handleSelectorApply
+// добавбить ещё шесть уровней и к тем у которых нет добавить HTML разметку
+// добавить возможность применять селекторы мышкой
+
 export default class Levels {
     title: Element | null;
     table: Element | null;
@@ -5,7 +11,6 @@ export default class Levels {
     circle: Element;
     square: Element;
     jar: Element;
-    // currentLevel: number;
     constructor() {
         this.title = document.querySelector('.headline');
         this.table = document.querySelector('.table');
@@ -19,8 +24,6 @@ export default class Levels {
 
         this.jar = document.createElement('jar');
         this.jar.className = 'table__item jar';
-
-        // this.currentLevel;
     }
 
     initialize() {
@@ -38,6 +41,16 @@ export default class Levels {
 
         const clearHTMLField = () => {
             this.HTMLField.innerHTML = '';
+        };
+
+        const getCompletedLevels = () => {
+            document.querySelectorAll('.levels__item').forEach((e, index) => {
+                index++;
+                if (localStorage.getItem(`level_${index}`)) {
+                    e.classList.add('levels__item_passed');
+                    e.removeEventListener('click', handleLevelSelect);
+                }
+            });
         };
 
         const updateInfo = (e?: Event) => {
@@ -101,36 +114,47 @@ export default class Levels {
         };
 
         setLevel();
+        getCompletedLevels();
+
         const handleLevelSelect = (e: Event) => {
-            clearTable();
-            clearHTMLField();
-            updateInfo(e);
+            const et = e.target as HTMLElement;
+            if (!et.classList.contains('levels__item_passed')) {
+                clearTable();
+                clearHTMLField();
+                updateInfo(e);
+            }
         };
 
-        const handleLevelReset = () => {
-            console.log('reset all');
-        };
-
-        async function finishLevel(l: Element) {
+        const finishLevel = (l: Element) => {
             l.classList.add('selection');
             // задержку добавить надо
             clearTable();
             clearHTMLField();
-            // сделать чтобы при выполнении уровня он зачёркивался
-            const currentLevelLabel = document.querySelector('.levels__item_active');
+            const currentLevelLabel = document.querySelector('.levels__item_active') as HTMLElement;
             console.log(currentLevelLabel, 'current');
             currentLevelLabel?.classList.add('levels__item_passed');
             currentLevelLabel?.classList.remove('levels__item_active');
             currentLevelLabel?.removeEventListener('click', handleLevelSelect);
 
             const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
+            localStorage.setItem('currentLevel', `${nextLevel.dataset.level}`);
+            if (!nextLevel) {
+                clearTable();
+                clearLevelHightlight();
+                const table = this.table as Element;
+                table.innerHTML = "GJ! You've passed all levels.";
+                return;
+            }
+            localStorage.setItem(`level_${currentLevelLabel?.dataset.level}`, 'done');
 
             setLevel(nextLevel);
             clearLevelHightlight();
             nextLevel.classList.add('levels__item_active');
-        }
+            const input = document.querySelector('input') as HTMLInputElement;
+            input.value = '';
+        };
 
-        function handleSelectorApply(e: Event) {
+        const handleSelectorApply = (e: Event) => {
             const input = e.target as HTMLTextAreaElement;
             const selector = input?.value;
             // улучшить и исправить проверку
@@ -141,7 +165,20 @@ export default class Levels {
                     // error sign
                 }
             });
-        }
+        };
+
+        const handleLevelReset = () => {
+            document.querySelectorAll('.levels__item').forEach((e, index) => {
+                index++;
+                localStorage.setItem(`level_${index}`, '');
+                e.classList.remove('levels__item_passed');
+            });
+            clearHTMLField();
+            clearTable();
+            clearLevelHightlight();
+            localStorage.setItem('currentLevel', '1');
+            setLevel(document.querySelector('[data-level="1"]') as HTMLElement);
+        };
 
         document.querySelectorAll('.levels__item').forEach((e) => {
             e.addEventListener('click', handleLevelSelect);
@@ -156,7 +193,6 @@ export default class Levels {
         this.table?.appendChild(this.square.cloneNode(true));
         document.querySelector('.square')?.classList.add('target');
         this.table?.appendChild(this.jar.cloneNode(true));
-        //
         const htmlCircle = document.createElement('div');
         this.HTMLField?.appendChild(htmlCircle);
         htmlCircle.appendChild(document.createTextNode('<circle />'));
@@ -169,7 +205,6 @@ export default class Levels {
     }
 
     levelTwo() {
-        // this.currentLevel = 1;
         this.table?.appendChild(this.circle.cloneNode(true));
         this.table?.appendChild(this.jar.cloneNode(true));
         document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
@@ -183,6 +218,7 @@ export default class Levels {
         this.table?.appendChild(this.circle.cloneNode(true));
         document.querySelector('circle:last-child')?.classList.add('target');
         document.querySelector('circle:first-child')?.classList.add('target');
+        document.querySelector('circle:nth-child(2)')?.classList.add('target');
     }
 
     levelFour() {
@@ -195,26 +231,32 @@ export default class Levels {
     }
 
     levelFive() {
-        console.log('execute this level');
+        this.table?.appendChild(this.square.cloneNode(true));
+        document.querySelector('.square')?.classList.add('target');
     }
 
     levelSix() {
-        console.log('execute this level');
+        this.table?.appendChild(this.square.cloneNode(true));
+        document.querySelector('.square')?.classList.add('target');
     }
 
     levelSeven() {
-        console.log('execute this level');
+        this.table?.appendChild(this.square.cloneNode(true));
+        document.querySelector('.square')?.classList.add('target');
     }
 
     levelEight() {
-        console.log('execute this level');
+        this.table?.appendChild(this.square.cloneNode(true));
+        document.querySelector('.square')?.classList.add('target');
     }
 
     levelNine() {
-        console.log('execute this level');
+        this.table?.appendChild(this.square.cloneNode(true));
+        document.querySelector('.square')?.classList.add('target');
     }
 
     levelTen() {
-        console.log('execute this level');
+        this.table?.appendChild(this.square.cloneNode(true));
+        document.querySelector('.square')?.classList.add('target');
     }
 }
