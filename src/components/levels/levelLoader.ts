@@ -1,5 +1,4 @@
 // план:
-// исправить некорректное поведение игры при завершении последнего уровня, смотреть функцию finishLevel
 // исправить способ распознавания правильных ответов в handleSelectorApply
 // добавбить ещё шесть уровней и к тем у которых нет добавить HTML разметку
 // добавить возможность применять селекторы мышкой
@@ -211,6 +210,7 @@ export default class Levels {
         this.table?.appendChild(this.square.cloneNode(true));
         document.querySelector('.square')?.classList.add('target');
         this.table?.appendChild(this.jar.cloneNode(true));
+
         const htmlCircle = document.createElement('div');
         this.HTMLField?.appendChild(htmlCircle);
         htmlCircle.appendChild(document.createTextNode('<circle />'));
@@ -228,6 +228,15 @@ export default class Levels {
         document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
         document.querySelector('circle:last-child')?.classList.remove('table__item');
         document.querySelector('circle:last-child')?.classList.add('target');
+
+        const htmlCircle = document.createElement('div');
+        const htmlJar = document.createElement('div');
+
+        this.HTMLField?.appendChild(htmlCircle);
+        htmlCircle.appendChild(document.createTextNode('<circle />'));
+
+        this.HTMLField?.appendChild(htmlJar);
+        htmlJar.appendChild(document.createTextNode('<jar />'));
     }
 
     levelThree() {
@@ -237,6 +246,17 @@ export default class Levels {
         document.querySelector('circle:last-child')?.classList.add('target');
         document.querySelector('circle:first-child')?.classList.add('target');
         document.querySelector('circle:nth-child(2)')?.classList.add('target');
+
+        let htmlCircle = document.createElement('div');
+
+        this.HTMLField?.appendChild(htmlCircle);
+        htmlCircle.appendChild(document.createTextNode('<circle />'));
+        htmlCircle = document.createElement('div');
+        this.HTMLField?.appendChild(htmlCircle);
+        htmlCircle.appendChild(document.createTextNode('<circle />'));
+        htmlCircle = document.createElement('div');
+        this.HTMLField?.appendChild(htmlCircle);
+        htmlCircle.appendChild(document.createTextNode('<circle />'));
     }
 
     levelFour() {
