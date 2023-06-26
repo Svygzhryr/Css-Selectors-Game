@@ -51,6 +51,9 @@ export default class Levels {
                     e.removeEventListener('click', handleLevelSelect);
                 }
             });
+            const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
+            nextLevel.classList.add('levels__item_passed');
+            nextLevel.removeEventListener('click', handleLevelSelect);
         };
 
         const updateInfo = (e?: Event) => {
@@ -108,6 +111,18 @@ export default class Levels {
                 case '10':
                     this.levelTen();
                     break;
+                case 'allPassed': {
+                    clearTable();
+                    clearLevelHightlight();
+                    const table = this.table as Element;
+                    const title = this.title as Element;
+                    const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
+                    nextLevel.classList.add('levels__item_passed');
+                    nextLevel.removeEventListener('click', handleLevelSelect);
+                    title.innerHTML = 'Well done!';
+                    table.innerHTML = "You've passed all levels.";
+                    break;
+                }
             }
             const hightlightLevel = document.querySelector(`[data-level='${localStorage.getItem('currentLevel')}']`);
             hightlightLevel?.classList.add('levels__item_active');
@@ -131,22 +146,25 @@ export default class Levels {
             clearTable();
             clearHTMLField();
             const currentLevelLabel = document.querySelector('.levels__item_active') as HTMLElement;
-            console.log(currentLevelLabel, 'current');
             currentLevelLabel?.classList.add('levels__item_passed');
             currentLevelLabel?.classList.remove('levels__item_active');
             currentLevelLabel?.removeEventListener('click', handleLevelSelect);
 
             const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
-            localStorage.setItem('currentLevel', `${nextLevel.dataset.level}`);
+            console.log(nextLevel);
             if (!nextLevel) {
+                localStorage.setItem('currentLevel', 'allPassed');
                 clearTable();
                 clearLevelHightlight();
                 const table = this.table as Element;
-                table.innerHTML = "GJ! You've passed all levels.";
+                const title = this.title as Element;
+                title.innerHTML = 'Well done!';
+                table.innerHTML = "You've passed all levels.";
                 return;
             }
-            localStorage.setItem(`level_${currentLevelLabel?.dataset.level}`, 'done');
 
+            localStorage.setItem('currentLevel', `${nextLevel.dataset.level}`);
+            localStorage.setItem(`level_${currentLevelLabel?.dataset.level}`, 'done');
             setLevel(nextLevel);
             clearLevelHightlight();
             nextLevel.classList.add('levels__item_active');
