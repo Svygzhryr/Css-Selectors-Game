@@ -1,7 +1,7 @@
 // план:
-// исправить способ распознавания правильных ответов в handleSelectorApply
 // добавбить ещё шесть уровней и к тем у которых нет добавить HTML разметку
 // добавить возможность применять селекторы мышкой
+// добавить анимацию при выполнении и анимацию при неправильном селекторе
 
 export default class Levels {
     title: Element | null;
@@ -139,8 +139,7 @@ export default class Levels {
             }
         };
 
-        const finishLevel = (l: Element) => {
-            l.classList.add('selection');
+        const finishLevel = () => {
             // задержку добавить надо
             clearTable();
             clearHTMLField();
@@ -174,14 +173,17 @@ export default class Levels {
         const handleSelectorApply = (e: Event) => {
             const input = e.target as HTMLTextAreaElement;
             const selector = input?.value;
-            // улучшить и исправить проверку
-            document.querySelectorAll(selector).forEach((l) => {
-                if (l.classList.contains('target')) {
-                    finishLevel(l);
-                } else {
-                    // error sign
-                }
+            const selectedElements = document.querySelectorAll(selector);
+            const arr = Array.from(selectedElements);
+            const check = arr.every((l) => {
+                return l.classList.contains('target');
             });
+            if (check) {
+                selectedElements.forEach((e) => e.classList.add('selection'));
+                finishLevel();
+            } else {
+                // неверный селектор
+            }
         };
 
         const handleLevelReset = () => {
@@ -245,7 +247,6 @@ export default class Levels {
         this.table?.appendChild(this.circle.cloneNode(true));
         document.querySelector('circle:last-child')?.classList.add('target');
         document.querySelector('circle:first-child')?.classList.add('target');
-        document.querySelector('circle:nth-child(2)')?.classList.add('target');
 
         let htmlCircle = document.createElement('div');
 
