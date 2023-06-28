@@ -141,49 +141,70 @@ export default class Levels {
 
         const finishLevel = () => {
             // задержку добавить надо
-            clearTable();
-            clearHTMLField();
-            const currentLevelLabel = document.querySelector('.levels__item_active') as HTMLElement;
-            currentLevelLabel?.classList.add('levels__item_passed');
-            currentLevelLabel?.classList.remove('levels__item_active');
-            currentLevelLabel?.removeEventListener('click', handleLevelSelect);
-
-            const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
-            console.log(nextLevel);
-            if (!nextLevel) {
-                localStorage.setItem('currentLevel', 'allPassed');
+            document.querySelector('.target')?.addEventListener('animationend', () => {
                 clearTable();
-                clearLevelHightlight();
-                const table = this.table as Element;
-                const title = this.title as Element;
-                title.innerHTML = 'Well done!';
-                table.innerHTML = "You've passed all levels.";
-                return;
-            }
+                clearHTMLField();
+                const currentLevelLabel = document.querySelector('.levels__item_active') as HTMLElement;
+                currentLevelLabel?.classList.add('levels__item_passed');
+                currentLevelLabel?.classList.remove('levels__item_active');
+                currentLevelLabel?.removeEventListener('click', handleLevelSelect);
 
-            localStorage.setItem('currentLevel', `${nextLevel.dataset.level}`);
-            localStorage.setItem(`level_${currentLevelLabel?.dataset.level}`, 'done');
-            setLevel(nextLevel);
-            clearLevelHightlight();
-            nextLevel.classList.add('levels__item_active');
-            const input = document.querySelector('input') as HTMLInputElement;
-            input.value = '';
+                const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
+                if (!nextLevel) {
+                    localStorage.setItem('currentLevel', 'allPassed');
+                    clearTable();
+                    clearLevelHightlight();
+                    const table = this.table as Element;
+                    const title = this.title as Element;
+                    title.innerHTML = 'Well done!';
+                    table.innerHTML = "You've passed all levels.";
+                    return;
+                }
+
+                localStorage.setItem('currentLevel', `${nextLevel.dataset.level}`);
+                localStorage.setItem(`level_${currentLevelLabel?.dataset.level}`, 'done');
+                setLevel(nextLevel);
+                clearLevelHightlight();
+                nextLevel.classList.add('levels__item_active');
+                const input = document.querySelector('input') as HTMLInputElement;
+                input.value = '';
+            });
         };
 
         const handleSelectorApply = (e: Event) => {
-            const input = e.target as HTMLTextAreaElement;
-            const selector = input?.value;
-            const selectedElements = document.querySelectorAll(selector);
-            const arr = Array.from(selectedElements);
-            const check = arr.every((l) => {
-                return l.classList.contains('target');
+            const input = e.target as HTMLInputElement;
+            input.addEventListener('keydown', (l) => {
+                if (l.key !== 'Enter') {
+                    return;
+                }
+                const selector = input?.value;
+                try {
+                    const selectedElements = document.querySelectorAll<HTMLElement>(selector);
+                    const arr = Array.from(selectedElements);
+                    const check = arr.every((l) => {
+                        return l.classList.contains('target');
+                    });
+                    if (check && arr.length !== 0) {
+                        selectedElements.forEach((e) => e.classList.add('selection'));
+                        selectedElements.forEach((e) => (e.style.animation = ''));
+                        finishLevel();
+                    } else {
+                        console.log('hello boi');
+                        selectedElements.forEach((e) => {
+                            e.style.removeProperty('animation');
+                        });
+                        selectedElements.forEach((e) => (e.style.animation = ''));
+                        selectedElements.forEach((e) => (e.style.animation += 'wrong 0.8s ease-in-out'));
+                        const targets = document.querySelectorAll<HTMLElement>('.target');
+                        targets.forEach((e) => {
+                            // wait
+                        });
+                    }
+                } catch {
+                    return null;
+                }
             });
-            if (check) {
-                selectedElements.forEach((e) => e.classList.add('selection'));
-                finishLevel();
-            } else {
-                // неверный селектор
-            }
+            input.removeEventListener('click', handleSelectorApply);
         };
 
         const handleLevelReset = () => {
@@ -197,6 +218,9 @@ export default class Levels {
             clearLevelHightlight();
             localStorage.setItem('currentLevel', '1');
             setLevel(document.querySelector('[data-level="1"]') as HTMLElement);
+            document.querySelectorAll('.levels__item').forEach((e) => {
+                e.addEventListener('click', handleLevelSelect);
+            });
         };
 
         document.querySelectorAll('.levels__item').forEach((e) => {
@@ -204,7 +228,7 @@ export default class Levels {
         });
 
         document.querySelector('.reset')?.addEventListener('click', handleLevelReset);
-        document.querySelector('.css-editor__selector')?.addEventListener('change', handleSelectorApply);
+        document.querySelector('.css-editor__selector')?.addEventListener('click', handleSelectorApply);
     }
 
     levelOne() {
@@ -244,15 +268,12 @@ export default class Levels {
     levelThree() {
         this.table?.appendChild(this.circle.cloneNode(true));
         this.table?.appendChild(this.circle.cloneNode(true));
-        this.table?.appendChild(this.circle.cloneNode(true));
-        document.querySelector('circle:last-child')?.classList.add('target');
         document.querySelector('circle:first-child')?.classList.add('target');
 
         let htmlCircle = document.createElement('div');
 
         this.HTMLField?.appendChild(htmlCircle);
-        htmlCircle.appendChild(document.createTextNode('<circle />'));
-        htmlCircle = document.createElement('div');
+
         this.HTMLField?.appendChild(htmlCircle);
         htmlCircle.appendChild(document.createTextNode('<circle />'));
         htmlCircle = document.createElement('div');
