@@ -141,7 +141,7 @@ export default class Levels {
 
         const finishLevel = () => {
             // задержку добавить надо
-            document.querySelector('.target')?.addEventListener('animationend', () => {
+            document.querySelector('.selection')?.addEventListener('animationend', () => {
                 clearTable();
                 clearHTMLField();
                 const currentLevelLabel = document.querySelector('.levels__item_active') as HTMLElement;
@@ -171,37 +171,47 @@ export default class Levels {
             });
         };
 
+        const selectorApply = (input: HTMLInputElement) => {
+            const selector = input?.value;
+            try {
+                const selectedElements = document.querySelectorAll<HTMLElement>(selector);
+                const arr = Array.from(selectedElements);
+                const check = arr.every((l) => {
+                    return l.classList.contains('target');
+                });
+                if (check && arr.length !== 0) {
+                    selectedElements.forEach((e) => e.classList.add('selection'));
+                    selectedElements.forEach((e) => e.classList.remove('target'));
+                    finishLevel();
+                } else {
+                    console.log('hello boi');
+                    selectedElements.forEach((e) => {
+                        e.classList.add('wrong');
+                        e.addEventListener('animationend', () => {
+                            e.classList.remove('wrong');
+                        });
+                    });
+                }
+            } catch {
+                return null;
+            }
+        };
+
         const handleSelectorApply = (e: Event) => {
             const input = e.target as HTMLInputElement;
+            console.log(input);
             input.addEventListener('keydown', (l) => {
                 if (l.key !== 'Enter') {
                     return;
                 }
-                const selector = input?.value;
-                try {
-                    const selectedElements = document.querySelectorAll<HTMLElement>(selector);
-                    const arr = Array.from(selectedElements);
-                    const check = arr.every((l) => {
-                        return l.classList.contains('target');
-                    });
-                    if (check && arr.length !== 0) {
-                        selectedElements.forEach((e) => e.classList.add('selection'));
-                        selectedElements.forEach((e) => (e.style.animation = ''));
-                        finishLevel();
-                    } else {
-                        console.log('hello boi');
-                        selectedElements.forEach((e) => {
-                            e.classList.add('wrong');
-                            e.addEventListener('animationend', () => {
-                                e.classList.remove('wrong');
-                            });
-                        });
-                    }
-                } catch {
-                    return null;
-                }
+                selectorApply(input);
             });
             input.removeEventListener('click', handleSelectorApply);
+        };
+
+        const handleClickSelectorApply = () => {
+            const input = document.querySelector('input') as HTMLInputElement;
+            selectorApply(input);
         };
 
         const handleLevelReset = () => {
@@ -226,6 +236,7 @@ export default class Levels {
 
         document.querySelector('.reset')?.addEventListener('click', handleLevelReset);
         document.querySelector('.css-editor__selector')?.addEventListener('click', handleSelectorApply);
+        document.querySelector('.css-editor__apply')?.addEventListener('click', handleClickSelectorApply);
     }
 
     levelOne() {

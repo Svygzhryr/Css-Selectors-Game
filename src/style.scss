@@ -79,7 +79,7 @@ header, main {
     background-color: $alt;
 
     .css-editor__selector {
-      width: 100%;
+      width: 70%;
       margin: 0 5px;
       margin-top: 5px;
       height: 20px;
@@ -104,6 +104,29 @@ header, main {
         &::placeholder {
           color: $bg;
         }
+      }
+    }
+
+    .css-editor__apply {
+      background-color: $text;
+      outline: none;
+      border: none;
+      height: 30px;
+      width: 30px;
+      margin-top: 5px;
+      border: 2px solid transparent;
+      color: $bg;
+      font-weight: 700;
+
+      transition: all .2s ease-in-out;
+
+      text-align: center;
+
+      &:hover {
+        background-color: $bg;
+        border: 2px solid $text;
+        cursor: pointer;
+        color: $text;
       }
     }
   }
@@ -308,13 +331,21 @@ header, main {
 }
 
 .selection {
-  opacity: 0;
-  outline: none;
-  transition: all 1s ease-in-out
+  animation: correct 1s ease-in-out;
 }
 
 .wrong {
   animation: wrong 0.7s ease-in-out;
+}
+
+@keyframes correct {
+ from {
+  opacity: 1;
+ }
+
+ to {
+  opacity: 0;
+ }
 }
 
 @keyframes highlight {
