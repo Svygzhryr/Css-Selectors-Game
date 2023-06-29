@@ -313,6 +313,10 @@ header, main {
   transition: all 1s ease-in-out
 }
 
+.wrong {
+  animation: wrong 0.7s ease-in-out;
+}
+
 @keyframes highlight {
   0% {
     background-color: $active;

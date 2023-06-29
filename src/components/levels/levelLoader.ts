@@ -191,13 +191,10 @@ export default class Levels {
                     } else {
                         console.log('hello boi');
                         selectedElements.forEach((e) => {
-                            e.style.removeProperty('animation');
-                        });
-                        selectedElements.forEach((e) => (e.style.animation = ''));
-                        selectedElements.forEach((e) => (e.style.animation += 'wrong 0.8s ease-in-out'));
-                        const targets = document.querySelectorAll<HTMLElement>('.target');
-                        targets.forEach((e) => {
-                            // wait
+                            e.classList.add('wrong');
+                            e.addEventListener('animationend', () => {
+                                e.classList.remove('wrong');
+                            });
                         });
                     }
                 } catch {
