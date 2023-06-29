@@ -10,9 +10,11 @@ export default class Levels {
     circle: Element;
     square: Element;
     jar: Element;
+    items: Element | null;
     constructor() {
         this.title = document.querySelector('.headline');
         this.table = document.querySelector('.table');
+        this.items = document.querySelector('.items');
         this.HTMLField = document.querySelector('.markup-viewer__html') as HTMLElement;
 
         this.circle = document.createElement('circle');
@@ -240,91 +242,106 @@ export default class Levels {
     }
 
     levelOne() {
-        this.table?.appendChild(this.circle.cloneNode(true));
-        this.table?.appendChild(this.square.cloneNode(true));
-        document.querySelector('.square')?.classList.add('target');
-        this.table?.appendChild(this.jar.cloneNode(true));
-
-        const htmlCircle = document.createElement('div');
-        this.HTMLField?.appendChild(htmlCircle);
-        htmlCircle.appendChild(document.createTextNode('<circle />'));
-        const htmlSquare = document.createElement('div');
-        this.HTMLField?.appendChild(htmlSquare);
-        htmlSquare.appendChild(document.createTextNode('<square />'));
-        const htmlJar = document.createElement('div');
-        this.HTMLField?.appendChild(htmlJar);
-        htmlJar.appendChild(document.createTextNode('<jar />'));
+        const lv = document.querySelector('.level1') as Element;
+        const table = lv?.querySelector('.table1') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block1') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
+        // this.table?.appendChild(this.circle.cloneNode(true));
+        // this.table?.appendChild(this.square.cloneNode(true));
+        // document.querySelector('.square')?.classList.add('target');
+        // this.table?.appendChild(this.jar.cloneNode(true));
+        // const htmlCircle = document.createElement('div');
+        // this.HTMLField?.appendChild(htmlCircle);
+        // htmlCircle.appendChild(document.createTextNode('<circle />'));
+        // const htmlSquare = document.createElement('div');
+        // this.HTMLField?.appendChild(htmlSquare);
+        // htmlSquare.appendChild(document.createTextNode('<square />'));
+        // const htmlJar = document.createElement('div');
+        // this.HTMLField?.appendChild(htmlJar);
+        // htmlJar.appendChild(document.createTextNode('<jar />'));
     }
 
     levelTwo() {
-        this.table?.appendChild(this.circle.cloneNode(true));
-        this.table?.appendChild(this.jar.cloneNode(true));
-        document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
-        document.querySelector('circle:last-child')?.classList.remove('table__item');
-        document.querySelector('circle:last-child')?.classList.add('target');
-
-        const htmlCircle = document.createElement('div');
-        const htmlJar = document.createElement('div');
-
-        this.HTMLField?.appendChild(htmlCircle);
-        htmlCircle.appendChild(document.createTextNode('<circle />'));
-
-        this.HTMLField?.appendChild(htmlJar);
-        htmlJar.appendChild(document.createTextNode('<jar />'));
+        // this.table?.appendChild(this.circle.cloneNode(true));
+        // this.table?.appendChild(this.jar.cloneNode(true));
+        // document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
+        // document.querySelector('circle:last-child')?.classList.remove('table__item');
+        // document.querySelector('circle:last-child')?.classList.add('target');
+        // const htmlCircle = document.createElement('div');
+        // const htmlJar = document.createElement('div');
+        // this.HTMLField?.appendChild(htmlCircle);
+        // htmlCircle.appendChild(document.createTextNode('<circle />'));
+        // this.HTMLField?.appendChild(htmlJar);
+        // htmlJar.appendChild(document.createTextNode('<jar />'));
     }
 
     levelThree() {
-        this.table?.appendChild(this.circle.cloneNode(true));
-        this.table?.appendChild(this.circle.cloneNode(true));
-        document.querySelector('circle:first-child')?.classList.add('target');
-
-        let htmlCircle = document.createElement('div');
-
-        this.HTMLField?.appendChild(htmlCircle);
-
-        this.HTMLField?.appendChild(htmlCircle);
-        htmlCircle.appendChild(document.createTextNode('<circle />'));
-        htmlCircle = document.createElement('div');
-        this.HTMLField?.appendChild(htmlCircle);
-        htmlCircle.appendChild(document.createTextNode('<circle />'));
+        // this.table?.appendChild(this.circle.cloneNode(true));
+        // this.table?.appendChild(this.circle.cloneNode(true));
+        // this.table?.appendChild(this.circle.cloneNode(true));
+        // document.querySelector('circle:first-child')?.classList.add('target');
+        // document.querySelector('circle:last-child')?.classList.add('target');
+        // let htmlCircle = document.createElement('div');
+        // this.HTMLField?.appendChild(htmlCircle);
+        // this.HTMLField?.appendChild(htmlCircle);
+        // htmlCircle.appendChild(document.createTextNode('<circle />'));
+        // htmlCircle = document.createElement('div');
+        // this.HTMLField?.appendChild(htmlCircle);
+        // htmlCircle.appendChild(document.createTextNode('<circle />'));
     }
 
     levelFour() {
-        this.table?.appendChild(this.square.cloneNode(true));
-        this.table?.appendChild(this.square.cloneNode(true));
-        this.table?.appendChild(this.square.cloneNode(true));
-        document.querySelector('square:nth-child(2)')?.classList.add('target');
-        const psquare = document.querySelector('square:nth-child(2)') as Element;
-        psquare.id = 'purple';
+        // this.table?.appendChild(this.square.cloneNode(true));
+        // this.table?.appendChild(this.square.cloneNode(true));
+        // this.table?.appendChild(this.square.cloneNode(true));
+        // document.querySelector('square:nth-child(2)')?.classList.add('target');
+        // const psquare = document.querySelector('square:nth-child(2)') as Element;
+        // psquare.id = 'purple';
     }
 
     levelFive() {
-        this.table?.appendChild(this.square.cloneNode(true));
-        document.querySelector('.square')?.classList.add('target');
+        // this.table?.appendChild(this.jar.cloneNode(true));
+        // document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
+        // const circle1 = document.querySelector('circle:first-child') as Element;
+        // circle1.classList.remove('table__item');
+        // circle1.classList.add('target');
+        // circle1.id = 'purple';
+        // this.table?.appendChild(this.circle.cloneNode(true));
+        // const circle2 = document.querySelector('circle:nth-child(2)') as Element;
+        // circle2.id = 'purple';
+        // this.table?.appendChild(this.jar.cloneNode(true));
+        // this.table?.appendChild(this.circle.cloneNode(true));
+        // this.table?.appendChild(this.jar.cloneNode(true));
+        // document.querySelector('jar:last-child')?.appendChild(this.circle.cloneNode(true));
+        // const circle3 = document.querySelector('circle:last-child') as Element;
+        // circle3.classList.remove('table__item');
+        // circle3.classList.add('target');
+        // circle3.id = 'purple';
     }
 
     levelSix() {
-        this.table?.appendChild(this.square.cloneNode(true));
-        document.querySelector('.square')?.classList.add('target');
+        // this.table?.appendChild(this.square.cloneNode(true));
+        // document.querySelector('.square')?.classList.add('target');
     }
 
     levelSeven() {
-        this.table?.appendChild(this.square.cloneNode(true));
-        document.querySelector('.square')?.classList.add('target');
+        // this.table?.appendChild(this.square.cloneNode(true));
+        // document.querySelector('.square')?.classList.add('target');
     }
 
     levelEight() {
-        this.table?.appendChild(this.square.cloneNode(true));
-        document.querySelector('.square')?.classList.add('target');
+        // this.table?.appendChild(this.square.cloneNode(true));
+        // document.querySelector('.square')?.classList.add('target');
     }
 
     levelNine() {
-        this.table?.appendChild(this.square.cloneNode(true));
-        document.querySelector('.square')?.classList.add('target');
+        // this.table?.appendChild(this.square.cloneNode(true));
+        // document.querySelector('.square')?.classList.add('target');
     }
 
     levelTen() {
-        this.table?.appendChild(this.square.cloneNode(true));
-        document.querySelector('.square')?.classList.add('target');
+        // this.table?.appendChild(this.square.cloneNode(true));
+        // document.querySelector('.square')?.classList.add('target');
     }
 }

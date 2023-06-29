@@ -71,6 +71,15 @@ header, main {
   height: 100%;
 }
 
+.things {
+  background-color: $main;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  width: 60%;
+}
+
 .css-editor {
   width: 50%;
   
@@ -276,6 +285,10 @@ header, main {
   transform: translateZ(10px);
   font-size: 12px;
   color: $bg;
+
+  &:hover {
+    outline: 4px solid $alt-text;
+  }
 }
 
 .circle {
@@ -336,6 +349,10 @@ header, main {
 
 .wrong {
   animation: wrong 0.7s ease-in-out;
+}
+
+.levelBank {
+  display: none;
 }
 
 @keyframes correct {
