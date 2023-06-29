@@ -50,9 +50,10 @@ export default class Levels {
                     e.removeEventListener('click', handleLevelSelect);
                 }
             });
-            const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
-            nextLevel.classList.add('levels__item_passed');
-            nextLevel.removeEventListener('click', handleLevelSelect);
+            // const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
+            // console.log(nextLevel);
+            // nextLevel.classList.add('levels__item_passed');
+            // nextLevel.removeEventListener('click', handleLevelSelect);
         };
 
         const updateInfo = (e?: Event) => {
@@ -152,6 +153,7 @@ export default class Levels {
                 const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
                 if (!nextLevel) {
                     localStorage.setItem('currentLevel', 'allPassed');
+                    localStorage.setItem(`level_${currentLevelLabel?.dataset.level}`, 'done');
                     clearTable();
                     clearLevelHightlight();
                     const table = this.table as Element;
@@ -184,7 +186,6 @@ export default class Levels {
                     selectedElements.forEach((e) => e.classList.remove('target'));
                     finishLevel();
                 } else {
-                    console.log('hello boi');
                     selectedElements.forEach((e) => {
                         e.classList.add('wrong');
                         e.addEventListener('animationend', () => {
@@ -199,7 +200,6 @@ export default class Levels {
 
         const handleSelectorApply = (e: Event) => {
             const input = e.target as HTMLInputElement;
-            console.log(input);
             input.addEventListener('keydown', (l) => {
                 if (l.key !== 'Enter') {
                     return;
