@@ -128,6 +128,10 @@ export default class Levels {
             }
             const hightlightLevel = document.querySelector(`[data-level='${localStorage.getItem('currentLevel')}']`);
             hightlightLevel?.classList.add('levels__item_active');
+            // const lvs = document.querySelectorAll('.target');
+            // lvs.forEach((e) => {
+            //     e.classList.remove('wrong');
+            // });
         };
 
         setLevel();
@@ -178,7 +182,8 @@ export default class Levels {
         const selectorApply = (input: HTMLInputElement) => {
             const selector = input?.value;
             try {
-                const selectedElements = document.querySelectorAll<HTMLElement>(selector);
+                const things = document.querySelector('.things') as Element;
+                const selectedElements = things.querySelectorAll<HTMLElement>(selector);
                 const arr = Array.from(selectedElements);
                 const check = arr.every((l) => {
                     return l.classList.contains('target');
@@ -189,6 +194,7 @@ export default class Levels {
                     finishLevel();
                 } else {
                     selectedElements.forEach((e) => {
+                        console.log('wrong select fired');
                         e.classList.add('wrong');
                         e.addEventListener('animationend', () => {
                             e.classList.remove('wrong');
@@ -263,6 +269,11 @@ export default class Levels {
     }
 
     levelTwo() {
+        const lv = document.querySelector('.level2') as Element;
+        const table = lv?.querySelector('.table2') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block1') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
         // this.table?.appendChild(this.circle.cloneNode(true));
         // this.table?.appendChild(this.jar.cloneNode(true));
         // document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
