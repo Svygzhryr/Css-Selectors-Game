@@ -129,6 +129,69 @@ export default class Levels {
             const hint = document.querySelector('.css-editor__hint') as HTMLElement;
             const gotHint = localStorage.getItem('hint') as string;
             hint.innerHTML = gotHint;
+
+            const els = this.items?.querySelectorAll<HTMLElement>('[data-element]');
+            if (!els) {
+                return;
+            }
+            els?.forEach((e: HTMLElement) => {
+                e.addEventListener(
+                    'mouseover',
+                    (l) => {
+                        const hoveredElement = l.target as HTMLElement;
+                        const selectedBlock = document.querySelector(
+                            `[data-block="${hoveredElement.dataset.element}"]`
+                        );
+                        selectedBlock?.classList.add('enhanced');
+                    },
+                    true
+                );
+                e.addEventListener(
+                    'mouseout',
+                    (l) => {
+                        const hoveredElement = l.target as HTMLElement;
+                        const selectedBlock = document.querySelector(
+                            `[data-block="${hoveredElement.dataset.element}"]`
+                        );
+                        selectedBlock?.classList.remove('enhanced');
+                    },
+                    true
+                );
+            });
+
+            const blocks = this.HTMLField.querySelector('div') as HTMLElement;
+            if (!blocks) {
+                return;
+            }
+            const blocksItems = blocks.querySelectorAll<HTMLElement>('[data-block]');
+            blocksItems.forEach((e: HTMLElement) => {
+                e.addEventListener(
+                    'mouseover',
+                    (l) => {
+                        l.stopPropagation();
+                        const hoveredElement = l.currentTarget as HTMLElement;
+                        hoveredElement.classList.add('enhanced');
+                        const selectedBlock = document.querySelector(
+                            `[data-element="${hoveredElement.dataset.block}"]`
+                        );
+                        selectedBlock?.classList.add('el-enhanced');
+                    },
+                    false
+                );
+                e.addEventListener(
+                    'mouseout',
+                    (l) => {
+                        l.stopPropagation();
+                        const hoveredElement = l.currentTarget as HTMLElement;
+                        hoveredElement.classList.remove('enhanced');
+                        const selectedBlock = document.querySelector(
+                            `[data-element="${hoveredElement.dataset.block}"]`
+                        );
+                        selectedBlock?.classList.remove('el-enhanced');
+                    },
+                    false
+                );
+            });
             // const lvs = document.querySelectorAll('.target');
             // lvs.forEach((e) => {
             //     e.classList.remove('wrong');
