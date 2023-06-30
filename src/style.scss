@@ -101,8 +101,12 @@ header, main {
 
 
       .css-editor__hint {
+        padding-left: 10px;
         color: transparent;
         cursor: default;
+        display: inline-block;
+        font-weight: 700; 
+        width: 100%;
 
 
         &:hover {
@@ -395,6 +399,27 @@ header, main {
 
 .levelBank {
   display: none;
+}
+
+.small {
+  transform: scale(0.7);
+}
+
+circle[angry] {
+  background-color: $active;
+  box-shadow: inset -5px -5px 10px rgba(150, 32, 32, 0.5);
+  margin-top: 40px;
+  font-weight: 1000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $bg;
+
+  cursor: default;
 }
 
 @keyframes correct {

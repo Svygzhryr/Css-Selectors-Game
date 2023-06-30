@@ -254,8 +254,8 @@ export default class Levels {
 
     levelOne() {
         const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'try "square"';
-        localStorage.setItem('hint', 'try "square"');
+        hint.innerHTML = 'square';
+        localStorage.setItem('hint', 'square');
 
         const lv = document.querySelector('.level1') as Element;
         const table = lv?.querySelector('.table1') as Element;
@@ -270,8 +270,8 @@ export default class Levels {
 
     levelTwo() {
         const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'its "jar circle"';
-        localStorage.setItem('hint', 'its "jar circle"');
+        hint.innerHTML = 'jar circle';
+        localStorage.setItem('hint', 'jar circle');
 
         const lv = document.querySelector('.level2') as Element;
         const table = lv?.querySelector('.table2') as Element;
@@ -281,71 +281,98 @@ export default class Levels {
     }
 
     levelThree() {
-        // this.table?.appendChild(this.circle.cloneNode(true));
-        // this.table?.appendChild(this.circle.cloneNode(true));
-        // this.table?.appendChild(this.circle.cloneNode(true));
-        // document.querySelector('circle:first-child')?.classList.add('target');
-        // document.querySelector('circle:last-child')?.classList.add('target');
-        // let htmlCircle = document.createElement('div');
-        // this.HTMLField?.appendChild(htmlCircle);
-        // this.HTMLField?.appendChild(htmlCircle);
-        // htmlCircle.appendChild(document.createTextNode('<circle />'));
-        // htmlCircle = document.createElement('div');
-        // this.HTMLField?.appendChild(htmlCircle);
-        // htmlCircle.appendChild(document.createTextNode('<circle />'));
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = 'circle:first-child, circle:last-child';
+        localStorage.setItem('hint', 'circle:first-child, circle:last-child');
+
+        const lv = document.querySelector('.level3') as Element;
+        const table = lv?.querySelector('.table3') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block3') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
     }
 
     levelFour() {
-        // this.table?.appendChild(this.square.cloneNode(true));
-        // this.table?.appendChild(this.square.cloneNode(true));
-        // this.table?.appendChild(this.square.cloneNode(true));
-        // document.querySelector('square:nth-child(2)')?.classList.add('target');
-        // const psquare = document.querySelector('square:nth-child(2)') as Element;
-        // psquare.id = 'purple';
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = '#purple';
+        localStorage.setItem('hint', '#purple');
+
+        const lv = document.querySelector('.level4') as Element;
+        const table = lv?.querySelector('.table4') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block4') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
     }
 
     levelFive() {
-        // this.table?.appendChild(this.jar.cloneNode(true));
-        // document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
-        // const circle1 = document.querySelector('circle:first-child') as Element;
-        // circle1.classList.remove('table__item');
-        // circle1.classList.add('target');
-        // circle1.id = 'purple';
-        // this.table?.appendChild(this.circle.cloneNode(true));
-        // const circle2 = document.querySelector('circle:nth-child(2)') as Element;
-        // circle2.id = 'purple';
-        // this.table?.appendChild(this.jar.cloneNode(true));
-        // this.table?.appendChild(this.circle.cloneNode(true));
-        // this.table?.appendChild(this.jar.cloneNode(true));
-        // document.querySelector('jar:last-child')?.appendChild(this.circle.cloneNode(true));
-        // const circle3 = document.querySelector('circle:last-child') as Element;
-        // circle3.classList.remove('table__item');
-        // circle3.classList.add('target');
-        // circle3.id = 'purple';
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = 'jar>circle#purple';
+        localStorage.setItem('hint', 'jar>circle#purple');
+
+        const lv = document.querySelector('.level5') as Element;
+        const table = lv?.querySelector('.table5') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block5') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
     }
 
     levelSix() {
-        // this.table?.appendChild(this.square.cloneNode(true));
-        // document.querySelector('.square')?.classList.add('target');
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = 'square.small';
+        localStorage.setItem('hint', 'square.small');
+
+        const lv = document.querySelector('.level6') as Element;
+        const table = lv?.querySelector('.table6') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block6') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
     }
 
     levelSeven() {
-        // this.table?.appendChild(this.square.cloneNode(true));
-        // document.querySelector('.square')?.classList.add('target');
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = 'circle.small[angry]';
+        localStorage.setItem('hint', 'circle.small[angry]');
+
+        const lv = document.querySelector('.level7') as Element;
+        const table = lv?.querySelector('.table7') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block7') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
     }
 
     levelEight() {
-        // this.table?.appendChild(this.square.cloneNode(true));
-        // document.querySelector('.square')?.classList.add('target');
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = 'square:nth-child(3)';
+        localStorage.setItem('hint', 'square:nth-child(3)');
+
+        const lv = document.querySelector('.level8') as Element;
+        const table = lv?.querySelector('.table8') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block8') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
     }
 
     levelNine() {
-        // this.table?.appendChild(this.square.cloneNode(true));
-        // document.querySelector('.square')?.classList.add('target');
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = 'circle.small:not[angry]';
+        localStorage.setItem('hint', 'circle.small:not[angry]');
+
+        const lv = document.querySelector('.level9') as Element;
+        const table = lv?.querySelector('.table9') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block9') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
     }
 
     levelTen() {
-        // this.table?.appendChild(this.square.cloneNode(true));
-        // document.querySelector('.square')?.classList.add('target');
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = '*';
+        localStorage.setItem('hint', '*');
+
+        const lv = document.querySelector('.level10') as Element;
+        const table = lv?.querySelector('.table10') as Element;
+        this.table?.appendChild(table?.cloneNode(true));
+        const text = document.querySelector('.html-block10') as Element;
+        this.HTMLField.appendChild(text?.cloneNode(true));
     }
 }
