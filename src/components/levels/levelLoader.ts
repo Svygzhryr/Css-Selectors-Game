@@ -1,7 +1,5 @@
 // план:
 // добавбить ещё шесть уровней и к тем у которых нет добавить HTML разметку
-// добавить возможность применять селекторы мышкой
-// добавить анимацию при выполнении и анимацию при неправильном селекторе
 
 export default class Levels {
     title: Element | null;
@@ -128,6 +126,9 @@ export default class Levels {
             }
             const hightlightLevel = document.querySelector(`[data-level='${localStorage.getItem('currentLevel')}']`);
             hightlightLevel?.classList.add('levels__item_active');
+            const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+            const gotHint = localStorage.getItem('hint') as string;
+            hint.innerHTML = gotHint;
             // const lvs = document.querySelectorAll('.target');
             // lvs.forEach((e) => {
             //     e.classList.remove('wrong');
@@ -238,6 +239,10 @@ export default class Levels {
             });
         };
 
+        const handleCodeMouseOver = (e: EventTarget) => {
+            console.log(e);
+        };
+
         document.querySelectorAll('.levels__item').forEach((e) => {
             e.addEventListener('click', handleLevelSelect);
         });
@@ -248,43 +253,31 @@ export default class Levels {
     }
 
     levelOne() {
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = 'try "square"';
+        localStorage.setItem('hint', 'try "square"');
+
         const lv = document.querySelector('.level1') as Element;
         const table = lv?.querySelector('.table1') as Element;
         this.table?.appendChild(table?.cloneNode(true));
         const text = document.querySelector('.html-block1') as Element;
         this.HTMLField.appendChild(text?.cloneNode(true));
-        // this.table?.appendChild(this.circle.cloneNode(true));
-        // this.table?.appendChild(this.square.cloneNode(true));
-        // document.querySelector('.square')?.classList.add('target');
-        // this.table?.appendChild(this.jar.cloneNode(true));
-        // const htmlCircle = document.createElement('div');
-        // this.HTMLField?.appendChild(htmlCircle);
-        // htmlCircle.appendChild(document.createTextNode('<circle />'));
-        // const htmlSquare = document.createElement('div');
-        // this.HTMLField?.appendChild(htmlSquare);
-        // htmlSquare.appendChild(document.createTextNode('<square />'));
-        // const htmlJar = document.createElement('div');
-        // this.HTMLField?.appendChild(htmlJar);
-        // htmlJar.appendChild(document.createTextNode('<jar />'));
+        const htmlElementsArray = this.HTMLField.querySelectorAll('div');
+        htmlElementsArray.forEach((e) => {
+            // e.addEventListener('mouseover', handleCodeMouseOver);
+        });
     }
 
     levelTwo() {
+        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
+        hint.innerHTML = 'its "jar circle"';
+        localStorage.setItem('hint', 'its "jar circle"');
+
         const lv = document.querySelector('.level2') as Element;
         const table = lv?.querySelector('.table2') as Element;
         this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block1') as Element;
+        const text = document.querySelector('.html-block2') as Element;
         this.HTMLField.appendChild(text?.cloneNode(true));
-        // this.table?.appendChild(this.circle.cloneNode(true));
-        // this.table?.appendChild(this.jar.cloneNode(true));
-        // document.querySelector('.jar')?.appendChild(this.circle.cloneNode(true));
-        // document.querySelector('circle:last-child')?.classList.remove('table__item');
-        // document.querySelector('circle:last-child')?.classList.add('target');
-        // const htmlCircle = document.createElement('div');
-        // const htmlJar = document.createElement('div');
-        // this.HTMLField?.appendChild(htmlCircle);
-        // htmlCircle.appendChild(document.createTextNode('<circle />'));
-        // this.HTMLField?.appendChild(htmlJar);
-        // htmlJar.appendChild(document.createTextNode('<jar />'));
     }
 
     levelThree() {
