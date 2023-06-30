@@ -67,8 +67,18 @@
                   <li>19</li>
                   <li>20</li>
               </ul>
-              <input placeholder="Type in your selectors here..." type="text" class="css-editor__selector">
-              <button class="css-editor__apply">→</button>
+              <div class="css-editor__code">
+                <div class="css-editor__controls">
+                  <input placeholder="Type in your selectors..." type="text" class="css-editor__selector">
+                  <button class="css-editor__apply">→</button>
+                </div>
+                <div class="css-editor__comments">
+                  // Hover the lower block to <br> // see the hint <br>
+                  // <span class="css-editor__hint">might help</span>
+                </div>
+              </div>
+
+
           </div>
         </div>
   
@@ -120,7 +130,7 @@
           <jar class="jar"></jar>
         </div>
         <div class="html-block1">
-          <div>&ltcirle/&gt</div>
+          <div>&ltcircle/&gt</div>
           <div>&ltsquare/&gt</div>
           <div>&ltjar/&gt</div>
         </div>
@@ -133,11 +143,19 @@
             <circle class="circle target"></circle>
           </jar>
         </div>
-        <div class="html-block2"></div>
+        <div class="html-block2">
+          <div>&ltcircle/&gt</div>
+          <div>&ltjar&gt <br>
+            <div style="margin-left: 10px">&ltcircle/&gt</div>
+            &lt/jar&gt
+          </div>
+        </div>
       </div>
 
       <div class="level3">
-        <div class="things table3"></div>
+        <div class="things table3">
+          
+        </div>
         <div class="html-blocks"></div>
       </div>
 
