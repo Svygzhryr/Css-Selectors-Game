@@ -1,6 +1,3 @@
-// план:
-// добавбить ещё шесть уровней и к тем у которых нет добавить HTML разметку
-
 export default class Levels {
     title: Element | null;
     table: Element | null;
@@ -235,6 +232,11 @@ export default class Levels {
 
                 localStorage.setItem('currentLevel', `${nextLevel.dataset.level}`);
                 localStorage.setItem(`level_${currentLevelLabel?.dataset.level}`, 'done');
+                const clevel = localStorage.getItem('currentLevel');
+                const ctitle = document.querySelector(`[data-level='${clevel}']`)?.innerHTML as string;
+                localStorage.setItem('title', ctitle);
+                const title = this.title as Element;
+                title.innerHTML = ctitle;
                 setLevel(nextLevel);
                 clearLevelHightlight();
                 nextLevel.classList.add('levels__item_active');
@@ -296,6 +298,7 @@ export default class Levels {
             clearTable();
             clearLevelHightlight();
             localStorage.setItem('currentLevel', '1');
+            localStorage.setItem('title', 'Square');
             setLevel(document.querySelector('[data-level="1"]') as HTMLElement);
             document.querySelectorAll('.levels__item').forEach((e) => {
                 e.addEventListener('click', handleLevelSelect);

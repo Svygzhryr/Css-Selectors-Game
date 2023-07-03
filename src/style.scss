@@ -94,7 +94,7 @@ header, main {
 
     .css-editor__comments {
       margin-top: 10px;
-      line-height: 1.37;
+      line-height: 1.38;
       padding: 10px;
       font-family: 'Source Code Pro', monospace;
       color: rgba(170, 175, 196, 0.5);
@@ -404,6 +404,11 @@ header, main {
 
 .small {
   transform: scale(0.7);
+  outline: 4px solid transparent;
+
+  &:hover {
+    outline: 4px solid $alt-text;
+  }
 }
 
 .enhanced {
@@ -522,3 +527,5 @@ circle[angry] {
     transform: scale(1);
   }
 }
+
+@import './styles/adaptive';
