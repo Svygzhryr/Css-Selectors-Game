@@ -41,6 +41,10 @@ main {
 }
 
 footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   text-align: center;
 
   & a {
@@ -479,6 +483,12 @@ circle[angry] {
   border-radius: 50%;
 
   cursor: default;
+}
+
+.link {
+  height: 20px;
+  width: auto;
+  margin-left: 10px;
 }
 
 @keyframes correct {
