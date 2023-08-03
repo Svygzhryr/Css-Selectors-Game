@@ -41,16 +41,15 @@ export default class Levels {
 
         const getCompletedLevels = () => {
             document.querySelectorAll('.levels__item').forEach((e, index) => {
-                index++;
-                if (localStorage.getItem(`level_${index}`)) {
+                if (localStorage.getItem(`level_${index + 1}`)) {
                     e.classList.add('levels__item_passed');
                     e.removeEventListener('click', handleLevelSelect);
                 }
             });
         };
 
-        const updateInfo = (e?: Event) => {
-            if (e?.target instanceof Element) {
+        const updateInfo = (e: Event) => {
+            if (e.target instanceof Element) {
                 const element = e.target as HTMLElement | null;
                 if (this.title && element) {
                     if (!element.classList.contains('levels__item_active')) {
@@ -71,9 +70,6 @@ export default class Levels {
                 this.title.innerHTML = storedTitle;
             }
             switch (element?.dataset.level || localStorage.getItem('currentLevel')) {
-                default:
-                    this.levelOne();
-                    break;
                 case '1':
                     this.levelOne();
                     break;
@@ -116,6 +112,9 @@ export default class Levels {
                     table.innerHTML = "You've passed all levels.";
                     break;
                 }
+                default:
+                    this.levelOne();
+                    break;
             }
             const hightlightLevel = document.querySelector(`[data-level='${localStorage.getItem('currentLevel')}']`);
             hightlightLevel?.classList.add('levels__item_active');
@@ -123,11 +122,11 @@ export default class Levels {
             const gotHint = localStorage.getItem('hint') as string;
             hint.innerHTML = gotHint;
 
-            const els = this.items?.querySelectorAll<HTMLElement>('[data-element]');
-            if (!els) {
+            const elements = this.items?.querySelectorAll<HTMLElement>('[data-element]');
+            if (!elements) {
                 return;
             }
-            els?.forEach((e: HTMLElement) => {
+            elements?.forEach((e: HTMLElement) => {
                 e.addEventListener(
                     'mouseover',
                     (l) => {
@@ -160,9 +159,9 @@ export default class Levels {
             blocksItems.forEach((e: HTMLElement) => {
                 e.addEventListener(
                     'mouseover',
-                    (l) => {
-                        l.stopPropagation();
-                        const hoveredElement = l.currentTarget as HTMLElement;
+                    (_item_) => {
+                        _item_.stopPropagation();
+                        const hoveredElement = _item_.currentTarget as HTMLElement;
                         hoveredElement.classList.add('enhanced');
                         const selectedBlock = document.querySelector(
                             `[data-element="${hoveredElement.dataset.block}"]`
@@ -223,11 +222,11 @@ export default class Levels {
 
                 localStorage.setItem('currentLevel', `${nextLevel.dataset.level}`);
                 localStorage.setItem(`level_${currentLevelLabel?.dataset.level}`, 'done');
-                const clevel = localStorage.getItem('currentLevel');
-                const ctitle = document.querySelector(`[data-level='${clevel}']`)?.innerHTML as string;
-                localStorage.setItem('title', ctitle);
+                const currentLevel = localStorage.getItem('currentLevel');
+                const currentTitle = document.querySelector(`[data-level='${currentLevel}']`)?.innerHTML as string;
+                localStorage.setItem('title', currentTitle);
                 const title = this.title as Element;
-                title.innerHTML = ctitle;
+                title.innerHTML = currentTitle;
                 setLevel(nextLevel);
                 clearLevelHightlight();
                 nextLevel.classList.add('levels__item_active');
@@ -238,35 +237,31 @@ export default class Levels {
 
         const selectorApply = (input: HTMLInputElement) => {
             const selector = input?.value;
-            try {
-                const things = document.querySelector('.things') as Element;
-                const selectedElements = things.querySelectorAll<HTMLElement>(selector);
-                const arr = Array.from(selectedElements);
-                const check = arr.every((l) => {
-                    return l.classList.contains('target');
-                });
-                if (check && arr.length !== 0) {
-                    selectedElements.forEach((e) => e.classList.add('selection'));
-                    selectedElements.forEach((e) => e.classList.remove('target'));
-                    finishLevel();
-                } else {
-                    selectedElements.forEach((e) => {
-                        console.log('wrong select fired');
-                        e.classList.add('wrong');
-                        e.addEventListener('animationend', () => {
-                            e.classList.remove('wrong');
-                        });
+            const things = document.querySelector('.things') as Element;
+            const selectedElements = things.querySelectorAll<HTMLElement>(selector);
+            const arr = Array.from(selectedElements);
+            const check = arr.every((l) => {
+                return l.classList.contains('target');
+            });
+            if (check && arr.length !== 0) {
+                selectedElements.forEach((e) => e.classList.add('selection'));
+                selectedElements.forEach((e) => e.classList.remove('target'));
+                finishLevel();
+            } else {
+                selectedElements.forEach((e) => {
+                    console.log('wrong select fired');
+                    e.classList.add('wrong');
+                    e.addEventListener('animationend', () => {
+                        e.classList.remove('wrong');
                     });
-                }
-            } catch {
-                return null;
+                });
             }
         };
 
         const handleSelectorApply = (e: Event) => {
             const input = e.target as HTMLInputElement;
-            input.addEventListener('keydown', (l) => {
-                if (l.key !== 'Enter') {
+            input.addEventListener('keydown', (e) => {
+                if (e.key !== 'Enter') {
                     return;
                 }
                 selectorApply(input);
@@ -281,8 +276,7 @@ export default class Levels {
 
         const handleLevelReset = () => {
             document.querySelectorAll('.levels__item').forEach((e, index) => {
-                index++;
-                localStorage.setItem(`level_${index}`, '');
+                localStorage.setItem(`level_${index + 1}`, '');
                 e.classList.remove('levels__item_passed');
             });
             clearHTMLField();
