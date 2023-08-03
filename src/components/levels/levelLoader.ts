@@ -1,3 +1,9 @@
+const clearLevelHightlight = () => {
+    document.querySelectorAll('.levels__item').forEach((l) => {
+        l.classList.remove('levels__item_active');
+    });
+};
+
 export default class Levels {
     title: Element | null;
     table: Element | null;
@@ -27,12 +33,6 @@ export default class Levels {
             if (this.table) {
                 this.table.innerHTML = '';
             }
-        };
-
-        const clearLevelHightlight = () => {
-            document.querySelectorAll('.levels__item').forEach((l) => {
-                l.classList.remove('levels__item_active');
-            });
         };
 
         const clearHTMLField = () => {
