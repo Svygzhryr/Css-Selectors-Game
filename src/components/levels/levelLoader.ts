@@ -129,8 +129,8 @@ export default class Levels {
             elements?.forEach((e: HTMLElement) => {
                 e.addEventListener(
                     'mouseover',
-                    (l) => {
-                        const hoveredElement = l.target as HTMLElement;
+                    (_item_) => {
+                        const hoveredElement = _item_.target as HTMLElement;
                         const selectedBlock = document.querySelector(
                             `[data-block="${hoveredElement.dataset.element}"]`
                         );
