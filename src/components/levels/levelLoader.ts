@@ -47,10 +47,6 @@ export default class Levels {
                     e.removeEventListener('click', handleLevelSelect);
                 }
             });
-            // const nextLevel = document.querySelector('.levels__item:not(.levels__item_passed)') as HTMLElement;
-            // console.log(nextLevel);
-            // nextLevel.classList.add('levels__item_passed');
-            // nextLevel.removeEventListener('click', handleLevelSelect);
         };
 
         const updateInfo = (e?: Event) => {
@@ -189,10 +185,6 @@ export default class Levels {
                     false
                 );
             });
-            // const lvs = document.querySelectorAll('.target');
-            // lvs.forEach((e) => {
-            //     e.classList.remove('wrong');
-            // });
         };
 
         setLevel();
@@ -208,7 +200,6 @@ export default class Levels {
         };
 
         const finishLevel = () => {
-            // задержку добавить надо
             document.querySelector('.selection')?.addEventListener('animationend', () => {
                 clearTable();
                 clearHTMLField();
@@ -305,10 +296,6 @@ export default class Levels {
             });
         };
 
-        const handleCodeMouseOver = (e: EventTarget) => {
-            console.log(e);
-        };
-
         document.querySelectorAll('.levels__item').forEach((e) => {
             e.addEventListener('click', handleLevelSelect);
         });
@@ -328,10 +315,6 @@ export default class Levels {
         this.table?.appendChild(table?.cloneNode(true));
         const text = document.querySelector('.html-block1') as Element;
         this.HTMLField.appendChild(text?.cloneNode(true));
-        const htmlElementsArray = this.HTMLField.querySelectorAll('div');
-        htmlElementsArray.forEach((e) => {
-            // e.addEventListener('mouseover', handleCodeMouseOver);
-        });
     }
 
     levelTwo() {
