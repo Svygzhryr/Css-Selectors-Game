@@ -71,34 +71,34 @@ export default class Levels {
             }
             switch (element?.dataset.level || localStorage.getItem('currentLevel')) {
                 case '1':
-                    this.levelOne();
+                    this.levelAction('1', 'square');
                     break;
                 case '2':
-                    this.levelTwo();
+                    this.levelAction('2', 'jar circle');
                     break;
                 case '3':
-                    this.levelThree();
+                    this.levelAction('3', 'circle:first-child, circle:last-child');
                     break;
                 case '4':
-                    this.levelFour();
+                    this.levelAction('4', '#purple');
                     break;
                 case '5':
-                    this.levelFive();
+                    this.levelAction('5', 'jar>circle#purple');
                     break;
                 case '6':
-                    this.levelSix();
+                    this.levelAction('6', 'square.small');
                     break;
                 case '7':
-                    this.levelSeven();
+                    this.levelAction('7', 'circle.small[angry]');
                     break;
                 case '8':
-                    this.levelEight();
+                    this.levelAction('8', 'square:nth-child(3)');
                     break;
                 case '9':
-                    this.levelNine();
+                    this.levelAction('9', 'circle.small:not[angry]');
                     break;
                 case '10':
-                    this.levelTen();
+                    this.levelAction('10', '*');
                     break;
                 case 'allPassed': {
                     clearTable();
@@ -113,7 +113,7 @@ export default class Levels {
                     break;
                 }
                 default:
-                    this.levelOne();
+                    this.levelAction('1', 'square');
                     break;
             }
             const hightlightLevel = document.querySelector(`[data-level='${localStorage.getItem('currentLevel')}']`);
@@ -299,123 +299,15 @@ export default class Levels {
         document.querySelector('.css-editor__apply')?.addEventListener('click', handleClickSelectorApply);
     }
 
-    levelOne() {
+    levelAction(level: string, selector: string) {
         const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'square';
-        localStorage.setItem('hint', 'square');
+        hint.innerHTML = selector;
+        localStorage.setItem('hint', selector);
 
-        const lv = document.querySelector('.level1') as Element;
-        const table = lv?.querySelector('.table1') as Element;
+        const lv = document.querySelector(`.level${level}`) as Element;
+        const table = lv?.querySelector(`.table${level}`) as Element;
         this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block1') as Element;
-        this.HTMLField.appendChild(text?.cloneNode(true));
-    }
-
-    levelTwo() {
-        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'jar circle';
-        localStorage.setItem('hint', 'jar circle');
-
-        const lv = document.querySelector('.level2') as Element;
-        const table = lv?.querySelector('.table2') as Element;
-        this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block2') as Element;
-        this.HTMLField.appendChild(text?.cloneNode(true));
-    }
-
-    levelThree() {
-        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'circle:first-child, circle:last-child';
-        localStorage.setItem('hint', 'circle:first-child, circle:last-child');
-
-        const lv = document.querySelector('.level3') as Element;
-        const table = lv?.querySelector('.table3') as Element;
-        this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block3') as Element;
-        this.HTMLField.appendChild(text?.cloneNode(true));
-    }
-
-    levelFour() {
-        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = '#purple';
-        localStorage.setItem('hint', '#purple');
-
-        const lv = document.querySelector('.level4') as Element;
-        const table = lv?.querySelector('.table4') as Element;
-        this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block4') as Element;
-        this.HTMLField.appendChild(text?.cloneNode(true));
-    }
-
-    levelFive() {
-        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'jar>circle#purple';
-        localStorage.setItem('hint', 'jar>circle#purple');
-
-        const lv = document.querySelector('.level5') as Element;
-        const table = lv?.querySelector('.table5') as Element;
-        this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block5') as Element;
-        this.HTMLField.appendChild(text?.cloneNode(true));
-    }
-
-    levelSix() {
-        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'square.small';
-        localStorage.setItem('hint', 'square.small');
-
-        const lv = document.querySelector('.level6') as Element;
-        const table = lv?.querySelector('.table6') as Element;
-        this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block6') as Element;
-        this.HTMLField.appendChild(text?.cloneNode(true));
-    }
-
-    levelSeven() {
-        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'circle.small[angry]';
-        localStorage.setItem('hint', 'circle.small[angry]');
-
-        const lv = document.querySelector('.level7') as Element;
-        const table = lv?.querySelector('.table7') as Element;
-        this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block7') as Element;
-        this.HTMLField.appendChild(text?.cloneNode(true));
-    }
-
-    levelEight() {
-        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'square:nth-child(3)';
-        localStorage.setItem('hint', 'square:nth-child(3)');
-
-        const lv = document.querySelector('.level8') as Element;
-        const table = lv?.querySelector('.table8') as Element;
-        this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block8') as Element;
-        this.HTMLField.appendChild(text?.cloneNode(true));
-    }
-
-    levelNine() {
-        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = 'circle.small:not[angry]';
-        localStorage.setItem('hint', 'circle.small:not[angry]');
-
-        const lv = document.querySelector('.level9') as Element;
-        const table = lv?.querySelector('.table9') as Element;
-        this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block9') as Element;
-        this.HTMLField.appendChild(text?.cloneNode(true));
-    }
-
-    levelTen() {
-        const hint = document.querySelector('.css-editor__hint') as HTMLElement;
-        hint.innerHTML = '*';
-        localStorage.setItem('hint', '*');
-
-        const lv = document.querySelector('.level10') as Element;
-        const table = lv?.querySelector('.table10') as Element;
-        this.table?.appendChild(table?.cloneNode(true));
-        const text = document.querySelector('.html-block10') as Element;
+        const text = document.querySelector(`.html-block${level}`) as Element;
         this.HTMLField.appendChild(text?.cloneNode(true));
     }
 }
