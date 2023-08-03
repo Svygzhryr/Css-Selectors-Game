@@ -4,34 +4,40 @@
 @import 'styles/scrollbar';
 
 body {
-  background-color: $bg;
-  color: $text;
-  font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
 
+  font-family: 'Montserrat', sans-serif;
+  color: $text;
+
+  background-color: $bg;
 }
 
 aside {
-  background-color: $main;
   position: fixed;
   right: 0;
   top: 0;
+
   height: 100vh;
   width: 20vw;
+
   text-align: center;
+
+  background-color: $main;
   border-left: 2px solid $highlight;
 }
 
 header {
-  background-color: $main;
   height: 150px;
   margin-bottom: 50px;
+
+  background-color: $main;
 }
 
 main {
-  background-color: $main;
   display: flex;
+
+  background-color: $main;
 }
 
 footer {
@@ -39,6 +45,7 @@ footer {
 
   & a {
     color: $active;
+    
     transition: all .3s ease-in-out;
 
     &:hover {
@@ -53,7 +60,7 @@ header, main {
 
 .app {
   margin: 0 10vw;
-  margin-right: calc(10vw + 20vw);
+  margin-right: 30vw;
 }
 
 .headline {
@@ -65,20 +72,22 @@ header, main {
 }
 
 .table {
-  background-color: $main;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+
+  background-color: $main;
 }
 
 .things {
-  background-color: $main;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   height: 100%;
   width: 60%;
+
+  background-color: $main;
 }
 
 .css-editor {
@@ -86,6 +95,7 @@ header, main {
   
   .css-editor__field {
     display: flex;
+
     background-color: $alt;
 
   .css-editor__code {
@@ -94,50 +104,53 @@ header, main {
 
     .css-editor__comments {
       margin-top: 10px;
-      line-height: 1.38;
       padding: 10px;
+
+      line-height: 1.38;
       font-family: 'Source Code Pro', monospace;
       color: rgba(170, 175, 196, 0.5);
 
-
       .css-editor__hint {
-        padding-left: 10px;
-        color: transparent;
-        cursor: default;
         display: inline-block;
-        font-weight: 700; 
         width: 100%;
+        padding-left: 10px;
 
+        color: transparent;
+        font-weight: 700; 
+        
+        cursor: default;
 
         &:hover {
           color: rgba(170, 175, 196, 0.5);
-          cursor: default;
+          
           transition: all .4s ease-in-out;
-
+        
+          cursor: default;
         }
       }
     }
   }
   
   .css-editor__controls {
-    width: 100%;
     display: flex;
     justify-content: space-between;
-
+    width: 100%;
   }
 
     .css-editor__selector {
-      font-family: 'Source Code Pro', monospace;
+      height: 20px;
       width: 90%;
       margin: 0 5px;
       margin-top: 5px;
-      height: 20px;
-      background-color: transparent;
-      border: none;
+      padding: 5px 5px;
+
+      font-family: 'Source Code Pro', monospace;
       color: $text;
       font-size: 16px;
-      padding: 5px 5px;
       font-weight: 700;
+
+      border: none;
+      background-color: transparent;
 
       transition: all .2s ease-in;
 
@@ -146,9 +159,11 @@ header, main {
       }
 
       &:focus {
-        outline: none;
-        animation: 6s ease-in-out highlight infinite;
         color: $bg;
+        
+        outline: none;
+        
+        animation: 6s ease-in-out highlight infinite;
 
         &::placeholder {
           color: $bg;
@@ -157,28 +172,29 @@ header, main {
     }
 
     .css-editor__apply {
-      background-color: $text;
-      outline: none;
-      border: none;
       height: 30px;
       width: 30px;
       margin-top: 5px;
-      border: 2px solid transparent;
-      color: $bg;
-      font-size: 16px;
       margin-right: 5px;
+      
+      font-size: 16px;
+      font-family: 'Source Code Pro', monospace;
+      color: $bg;
+      text-align: center;
+      
+      background-color: $text;
+      outline: none;
+      border: none;
+      border: 2px solid transparent;
 
       transition: all .2s ease-in-out;
 
-      text-align: center;
-
-      font-family: 'Source Code Pro', monospace;
-
       &:hover {
-        background-color: $bg;
-        border: 2px solid $text;
-        cursor: pointer;
         color: $text;
+        
+        border: 2px solid $text;
+        background-color: $bg;
+        cursor: pointer;
       }
     }
   }
@@ -193,37 +209,44 @@ header, main {
 
   .markup-viewer__html {
     padding: 9px 10px;
+    
     line-height: 1.5;
     font-size: 15px;
     font-family: 'Source Code Pro', monospace;
+    
     cursor: default;
   }
 }
 
 .css-editor__lines, .markup-viewer__lines {
-  list-style-type: none;
-  border-right: 2px solid $highlight;
-  width: 25px;
-  line-height: 1.5;
-  font-size: 15px;
   height: 100%;
+  width: 25px;
   margin: 0;
   padding: 10px 4px;
-  text-align: right;
+  
+  font-size: 15px;
   font-family: 'Source Code Pro', monospace;
+  text-align: right;
+  line-height: 1.5;
+  
+  border-right: 2px solid $highlight;
+  
+  list-style-type: none;
 }
 
 .css-editor__lines {
-  border-right: 2px solid $main;
   color: $text;
+  border-right: 2px solid $main;
 }
 
 .css-editor__header, .markup-viewer__header {
-  background-color: $bg;
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
+  
   font-family: 'Source Code Pro', monospace;
+  
+  background-color: $bg;
 }
 
 .levels {
@@ -231,21 +254,24 @@ header, main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0;
-  list-style-position: inside;
   width: 100%;
+  padding: 0;
+
   font-size: 15px;
   font-weight: 600;
+  
+  list-style-position: inside;
 
-  &>li {
+  & > li {
     margin: 5px 0;
+    
     transition: .2s all ease-in-out;
 
-    &:hover {
-      
+    &:hover {  
       color: $active;
+      
       cursor: pointer;
-
+    
     }
   }
 }
@@ -256,6 +282,7 @@ header, main {
 
   &:hover {
     color: $highlight !important;
+
     cursor: default !important;
   }
 }
@@ -264,28 +291,35 @@ header, main {
   color: $alt-active;
 
   &:hover {
-    cursor: default !important;
     color: $alt-active !important;
+
+    cursor: default !important;
   }
 }
 
 .reset {
   width: 80%;
   height: 50px;
-  background-color: $text;
+
   color: $bg;
-  border: 2px solid $text;
   font-size: 20px;
-  transition: all .3s ease-in-out;
+
+  background-color: $text;
+  border: 2px solid $text;
   box-shadow: 0px 20px 5px 0px transparent, 0 50px 10px 0 transparent;
+
+  transition: all .3s ease-in-out;
+
 
 
   &:hover {
-    cursor: pointer;
-    background-color: $bg;
     color: $text;
+    
+    background-color: $bg;
     border: $active 2px solid;
     box-shadow: 0px 5px 5px 0px $active, 0 10px 10px 0 $alt-active;
+
+    cursor: pointer;
   }
 }
 
@@ -300,7 +334,9 @@ header, main {
 
 .table__item {
   margin: 0 20px;
+
   outline: 4px solid transparent;
+
   transition: all .2s ease-in-out;
   
   &:hover {
@@ -318,22 +354,25 @@ header, main {
 }
 
 .jar {
-  height: 70px;
-  width: 60px;
-  background-color: rgba(188, 211, 229, 0.2);
+  z-index: 2;
+
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  height: 70px;
+  width: 60px;
   padding: 5px 0;
-  z-index: 2;
+
+  color: $bg;
+  font-size: 12px;
+  
+  background-color: rgba(188, 211, 229, 0.2);
   border-top: 10px solid $active;
   border-radius: 0 0 5px 5px;
-  transform-style: preserve-3d;
-  transform: translateZ(10px);
-  font-size: 12px;
-  color: $bg;
   outline: 4px solid transparent;
 
+  transform-style: preserve-3d;
+  transform: translateZ(10px);
 
   &:hover {
     outline: 4px solid $alt-text;
@@ -341,20 +380,22 @@ header, main {
 }
 
 .circle {
-  transform: translateZ(-10px);
   position: relative;
-  border-radius: 50%;
+  z-index: 0;
+
   width: 50px;
   height: 50px;
-  background-color: $active;
-  box-shadow: inset -5px -5px 10px rgba(150, 32, 32, 0.5);
-  z-index: 0;
   margin-top: 40px;
-
-  outline: 4px solid transparent;
-
+  
   font-size: 12px;
   color: $bg;
+
+  border-radius: 50%;
+  background-color: $active;
+  box-shadow: inset -5px -5px 10px rgba(150, 32, 32, 0.5);
+  outline: 4px solid transparent;
+
+  transform: translateZ(-10px);
 
   &:hover {
     outline: 4px solid $alt-text;
@@ -363,17 +404,18 @@ header, main {
 }
 
 .square {
-  transform: translateZ(-10px);
   height: 50px;
   width: 50px;
-  background-color: $active;
-  box-shadow: inset -5px 5px 1px rgba(114, 67, 28, 0.9);
   margin-top: 40px;
-
-  outline: 4px solid transparent;
 
   font-size: 12px;
   color: $bg;
+
+  background-color: $active;
+  box-shadow: inset -5px 5px 1px rgba(114, 67, 28, 0.9);
+  outline: 4px solid transparent;
+  
+  transform: translateZ(-10px);
 
   &:hover {
     outline: 4px solid $alt-text;
@@ -387,7 +429,6 @@ header, main {
 
 #purple.square {
   box-shadow: inset -5px 5px 1px rgba(17, 16, 75, 0.9);
-
 }
 
 .selection {
@@ -403,8 +444,9 @@ header, main {
 }
 
 .small {
-  transform: scale(0.7);
   outline: 4px solid transparent;
+
+  transform: scale(0.7);
 
   &:hover {
     outline: 4px solid $alt-text;
@@ -421,18 +463,20 @@ header, main {
 }
 
 circle[angry] {
-  background-color: $active;
-  box-shadow: inset -5px -5px 10px rgba(150, 32, 32, 0.5);
-  margin-top: 40px;
-  font-weight: 1000;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin-top: 40px;
+
   color: $bg;
+  font-size: 20px;
+  font-weight: 1000;
+  
+  background-color: $active;
+  box-shadow: inset -5px -5px 10px rgba(150, 32, 32, 0.5);
+  border-radius: 50%;
 
   cursor: default;
 }
@@ -465,7 +509,6 @@ circle[angry] {
 
 @keyframes target {
   0% {
-    // transform: rotate(10deg);
     background-color: $active;
   }
 
@@ -474,7 +517,6 @@ circle[angry] {
   }
 
   50% {
-    // transform: rotate(-10deg);
     background-color: $active;
   }
 
@@ -483,7 +525,6 @@ circle[angry] {
   }
 
   100% {
-    // transform: rotate(10deg);
     background-color: $active;
 
   }
@@ -491,7 +532,6 @@ circle[angry] {
 
 @keyframes atarget {
   0% {
-    // transform: rotate(10deg);
     background-color: $alt-active;
   }
 
@@ -500,7 +540,6 @@ circle[angry] {
   }
 
   50% {
-    // transform: rotate(-10deg);
     background-color: $alt-active;
   }
 
@@ -509,7 +548,6 @@ circle[angry] {
   }
 
   100% {
-    // transform: rotate(10deg);
     background-color: $alt-active;
   }
 }
