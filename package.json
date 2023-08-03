@@ -1,5 +1,5 @@
 {
-    "name": "RS-CSS",
+    "name": "rs-css",
     "version": "1.0.0",
     "description": "",
     "main": "webpack.base.config.js",
